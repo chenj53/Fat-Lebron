@@ -19,6 +19,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
 app.use(function(req,res,next){
   console.log("about to look for post routes?!?")
   console.dir(req.headers)
@@ -28,7 +31,7 @@ app.use(function(req,res,next){
 function processFormData(req,res,next){
   res.render('formdata',
     {title:"Form Data",inputEmail4:req.body.inputEmail4, inputPassword4:req.body.inputPassword4, inputAddress:req.body.inputAddress, inputAddress2:req.body.inputAddress2, inputCity:req.body.inputCity, inputState:req.body.inputState, inputZip:req.body.inputZip});
-  }
+  };
 
 
 
