@@ -7,6 +7,16 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+const mongoose = require( 'mongoose' );
+mongoose.connect( 'mongodb://localhost/skillmastery' );
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("we are connected!")
+});
+
+const usersController = require('./controllers/userscontrollers')
+
 var app = express();
 
 // view engine setup
@@ -22,6 +32,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+app.get('/about', function(req, res, next) {
+  res.render('about');
+});
+
 app.use(function(req,res,next){
   console.log("about to look for post routes?!?")
   console.dir(req.headers)
@@ -32,6 +46,10 @@ function processFormData(req,res,next){
   res.render('formdata',
     {title:"Form Data",inputEmail4:req.body.inputEmail4, inputPassword4:req.body.inputPassword4, inputAddress:req.body.inputAddress, inputAddress2:req.body.inputAddress2, inputCity:req.body.inputCity, inputState:req.body.inputState, inputZip:req.body.inputZip});
   };
+
+  app.post('/processform', userscontrollers.saveusers);
+
+  app.get('/showusers', userscontrollers.getAllusers);
 
 
 

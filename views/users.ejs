@@ -1,0 +1,13 @@
+<%- include('bootheader') -%>
+<%- include('menubar') -%>
+    <div class='jumbotron'>
+        <h1>Users</h1>
+    </div>
+    <ol>
+      <% for(i=0; i<users.length; i++){ %>
+          <li> <%= users[i].url %>
+              <%= users[i].users %> </li>
+          <% } %>
+          </ol>
+
+<%- include('bootfooter') -%>
