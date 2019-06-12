@@ -47,7 +47,6 @@ app.use(function(req,res,next){
 });
 
 app.post('/processform', function(req, res, next) {
-  console.log("In the processform code ..")
   console.dir(req.body)
   console.log("req.body.inputAddress = "+req.body.inputAddress)
   res.render('formdata',
