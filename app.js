@@ -44,12 +44,11 @@ app.use(function(req,res,next){
 
 function processFormData(req,res,next){
   res.render('formdata',
-    {title:"Form Data",inputEmail4:req.body.inputEmail4, inputPassword4:req.body.inputPassword4, inputAddress:req.body.inputAddress, inputAddress2:req.body.inputAddress2, inputCity:req.body.inputCity, inputState:req.body.inputState, inputZip:req.body.inputZip});
+    {title:"Form Data",inputEmail4:req.body.inputEmail4, inputPassword4:req.body.inputPassword4, inputAddress:req.body.inputAddress, name:req.body.name, inputCity:req.body.inputCity, inputState:req.body.inputState, inputZip:req.body.inputZip});
   };
 
-  app.post('/processform', userscontrollers.saveusers);
-
-  app.get('/showusers', userscontrollers.getAllusers);
+app.post('/processform', usersController.saveusers);
+app.get('/showusers',    usersController.getAllusers);
 
 
 
@@ -60,7 +59,7 @@ app.get('/myform', function(req, res, next) {
 
 app.use(function(req,res,next){
   console.log("about to look for post routes?!?")
-  console.dir(req.body)
+  //console.dir(req.body)
   next()
 });
 
@@ -68,7 +67,7 @@ app.post('/processform', function(req, res, next) {
   console.dir(req.body)
   console.log("req.body.inputAddress = "+req.body.inputAddress)
   res.render('formdata',
-  {title:"Form Data",inputEmail4:req.body.inputEmail4, inputPassword4:req.body.inputPassword4, inputAddress:req.body.inputAddress, inputAddress2:req.body.inputAddress2, inputCity:req.body.inputCity, inputState:req.body.inputState, inputZip:req.body.inputZip})
+  {title:"Form Data",inputEmail4:req.body.inputEmail4, inputPassword4:req.body.inputPassword4, inputAddress:req.body.inputAddress, name:req.body.name, inputCity:req.body.inputCity, inputState:req.body.inputState, inputZip:req.body.inputZip})
 });
 
 // app.use('/', indexRouter);  // this is how we use a router to handle the / path

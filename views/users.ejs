@@ -5,8 +5,13 @@
     </div>
     <ol>
       <% for(i=0; i<users.length; i++){ %>
-          <li> <%= users[i].url %>
-              <%= users[i].users %> </li>
+          <li> <%= users[i].name    %>
+              <%= users[i].inputEmail4    %>
+              <%= users[i].inputPassword4    %>
+              <%= users[i].inputAddress    %>
+              <%= users[i].inputCity    %>
+              <%= users[i].inputState    %>
+              <%= users[i].inputZip    %></li>
           <% } %>
           </ol>
 

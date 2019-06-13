@@ -4,21 +4,32 @@ const users = require( '../models/users' );
 exports.saveusers = ( req, res ) => {
   //console.log("in saveSkill!")
   //console.dir(req)
-  let newusers = new users( {
+  console.log("in saveusers !!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
-    password: req.body.password,
-    address: req.body.address,
-    address2: req.body.adress2,
-    city: req.body.city,
-    state: req.body.state,
-    zipcode:req.body.zipcode,
+  let userdata =
+  {
 
-  } )
+   name: req.body.name,
+   inputEmail4: req.body.inputEmail4,
+   inputPassword4: req.body.inputPassword4,
+   inputAddress:req.body.inputAddress,
+   inputCity: req.body.inputCity,
+   inputState: req.body.inputState,
+   inputZip:req.body.inputZip
+
+ }
+  let newusers = new users(userdata)
+  console.log("userdata=")
+  console.dir(userdata)
+  console.log("newusers=")
+  console.dir(newusers)
+  console.log('done')
 
   //console.log("skill = "+newSkill)
 
   newusers.save()
     .then( () => {
+      console.log("saved the data ----")
       res.redirect( '/showusers' );
     } )
     .catch( error => {
@@ -33,6 +44,7 @@ exports.getAllusers = ( req, res ) => {
   users.find()
     .exec()
     .then( ( users ) => {
+     console.log("found the users")
       res.render( 'users', {
         users: users, title:"Users"
       } );
