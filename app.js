@@ -63,33 +63,18 @@ app.use((req,res,next) => {
   res.locals.title="Cheap Shop"
   res.locals.loggedIn = false
   if (req.isAuthenticated()){
-    console.log(req.user.Email)
-    if (req.user.Email.endsWith("@brandeis.edu") ||
-          approvedLogins.includes(req.user.Email))
-          {
-            console.log("user has been Authenticated")
-            res.locals.user = req.user
-            res.locals.loggedIn = true
+      console.log('req.user='+ req.user)
+      console.log("user has been Authenticated")
+      res.locals.user = req.user
+      res.locals.loggedIn = true
           }
-    else {
-      res.locals.loggedIn = false
-    }
-    console.log('req.user = ')
-    console.dir(req.user)
-    // here is where we can handle whitelisted logins ...
-    if (req.user){
-      if (req.user.Email=='chenj53@brandeis.edu'){
-        console.log("Owner has logged in")
-        res.locals.status = 'teacher'
-      } else if (taList.includes(req.user.Email)){
-        console.log("A TA has logged in")
-        res.locals.status = 'ta'
-      }else {
-        console.log('student has logged in')
-        res.locals.status = 'student'
-      }
-    }
+  else {
+    res.locals.loggedIn = false
   }
+  console.log('req.user = ')
+  console.dir(req.user)
+  // here is where we can handle whitelisted logins ...
+
   next()
 })
 
@@ -204,7 +189,6 @@ app.post('/processform', function(req, res, next) {
 
 // app.use('/', indexRouter);  // this is how we use a router to handle the / path
 // but here we are more direct
-
 
 
 // catch 404 and forward to error handler
