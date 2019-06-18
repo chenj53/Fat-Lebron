@@ -9,13 +9,13 @@ exports.saveusers = ( req, res ) => {
   let userdata =
   {
 
-   name: req.body.name,
-   inputEmail4: req.body.inputEmail4,
-   inputPassword4: req.body.inputPassword4,
-   inputAddress:req.body.inputAddress,
-   inputCity: req.body.inputCity,
-   inputState: req.body.inputState,
-   inputZip:req.body.inputZip
+   Name: req.body.Name,
+   Email: req.body.Email,
+   Password: req.body.Password,
+   Address:req.body.Address,
+   City: req.body.City,
+   State: req.body.State,
+   Zip:req.body.Zip
 
  }
   let newusers = new users(userdata)
