@@ -1,11 +1,19 @@
 <%- include('bootheader') -%>
 <%- include('menubar') -%>
     <div class="jumbotron">
-        <h1>Cheap Shop Profile</h1>
-        <p> Welcome <%= Name %>
-            with email <%= Email %>
+        <h1>Cheap Shop Profile for <%= user.userName %></h1>
+        <img src="<%= user.profilePicURL%>">
+        <hr>
+        <p> Welcome <%= user.googlename %>
+            with email <%= user.googleemail %>
             You are logged in to Cheap Shop.
         </p>
+        <p> <%= user.apicity%>
+        <p> <%= user.apistate%>
+        <p> <%= user.apizip%>
+        <p> last updated on <%= user.lastUpdate %> </p>
+
+
 
     </div>
 

@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
 // AUTHENTICATION MODULES
 session = require("express-session"),
 bodyParser = require("body-parser"),
@@ -13,6 +14,8 @@ flash = require('connect-flash')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const profileController = require('./controllers/profileController')
+
 
 const mongoose = require( 'mongoose' );
 mongoose.connect( 'mongodb://localhost/skillmastery' );
@@ -30,6 +33,7 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const passport = require('passport')
 const configPassport = require('./config/passport')
 configPassport(passport)
+
 
 
 var app = express();
@@ -133,12 +137,28 @@ function isLoggedIn(req, res, next) {
     }
 }
 
+
 // we require them to be logged in to see their profile
-app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile')/*, {
-            user : req.user // get the user out of session and pass to template
-        });*/
-    });
+  app.get('/profile', isLoggedIn, function(req, res) {
+        res.render('profile')
+
+})
+
+        app.get('/editprofile',isLoggedIn, (req, res) => {
+            res.render('editprofile')
+          })
+
+//console.dir(profileController)
+    app.get('/profiles', isLoggedIn, profileController.getAllProfiles);
+
+    app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
+
+
+  app.post('/updateprofile',profileController.update)
+
+   // get the user out of session and pass to template
+
+
 
 // END OF THE AUTHENTICATION ROUTES
 
@@ -168,6 +188,10 @@ app.get('/showusers',    usersController.getAllusers);
 
 app.get('/myform', function(req, res, next) {
   res.render('myform',{title:"Form Demo"});
+});
+
+app.get('/editprofile', function(req, res, next) {
+  res.render('editprofile',{title:"Edit Profile"});
 });
 
 app.use(function(req,res,next){
@@ -206,5 +230,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;
