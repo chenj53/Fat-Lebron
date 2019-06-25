@@ -10,6 +10,7 @@ exports.update = ( req, res ) => {
   users.findOne(res.locals.user._id)
     .exec()
     .then((profile) => {
+      console.log("just found a profile")
         profile.userName = req.body.userName
         profile.profilePicURL = req.body.profilePicURL
         profile.apizip = req.body.apizip
@@ -25,8 +26,9 @@ exports.update = ( req, res ) => {
           profile.apistate = response.data.apistate
           profile.lastUpdate = new Date()
           profile.save()
-            .then(() => {
-                res.redirect('/profile');
+        .then(() => {
+          res.redirect( '/profile' );
+        })
         })
     })
     .catch(function (error) {
@@ -36,8 +38,8 @@ exports.update = ( req, res ) => {
     .finally(function () {
       // always executed
     });
-})
 };
+
 
 
 exports.getAllProfiles = ( req, res ) => {
