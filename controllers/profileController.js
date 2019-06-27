@@ -11,12 +11,13 @@ exports.update = ( req, res ) => {
     .exec()
     .then((profile) => {
       console.log("just found a profile")
+      console.dir(profile)
         profile.userName = req.body.userName
         profile.profilePicURL = req.body.profilePicURL
         profile.apizip = req.body.apizip
-        console.log(apikey.apikey.zipcode)
 
-        axios.get("https://www.zipcodeapi.com/rest/"+apikey.apikey.zipcode+"/multi-info.json/"+profile.apizip+"/degrees")
+
+        axios.get("https://www.zipcodeapi.com/rest/"+apikey.apikey.apizip+"/info.json/"+profile.apizip+"/degrees")
         .then(function (response) {
           // handle success
           console.log('got the response!!')
@@ -29,7 +30,6 @@ exports.update = ( req, res ) => {
         .then(() => {
           res.redirect( '/profile' );
         })
-        })
     })
     .catch(function (error) {
       // handle error
@@ -38,6 +38,7 @@ exports.update = ( req, res ) => {
     .finally(function () {
       // always executed
     });
+    })
 };
 
 
