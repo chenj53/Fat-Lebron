@@ -2,19 +2,15 @@
 <%- include('menubar') -%>
     <div class="jumbotron">
         <h1>Cheap Shop Profile for <%= user.userName %></h1>
-        <img src="<%= user.profilePicURL%>">
+        <img src="<%= user.profilePicURL%>" width="200">
         <hr>
         <p> Welcome <%= user.googlename %>
             with email <%= user.googleemail %>
             You are logged in to Cheap Shop.
         </p>
-        <p> <%= user.apicity%>
-        <p> <%= user.apistate%>
-        <p> <%= user.apizip%>
-        <p> last updated on <%= user.lastUpdate %> </p>
-
-
-
+        <p> <%= user.apizip %> <%= user.apicity %> <%= user.apistate %>
+        <p> Last updated on <%= user.lastUpdate %> </p>
+        <a href="/editProfile">edit profile</a>
     </div>
 
 <%- include('bootfooter') -%>

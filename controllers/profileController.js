@@ -64,7 +64,7 @@ exports.getOneProfile = ( req, res ) => {
   //gconsle.log('in getAllSkills')
   const id = req.params.id
   console.log('the id is '+id)
-  User.findOne({_id:id})
+  users.findOne({_id:id})
     .exec()
     .then( ( profile ) => {
       res.render( 'showProfile', {

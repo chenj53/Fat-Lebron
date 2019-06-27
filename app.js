@@ -149,6 +149,8 @@ function isLoggedIn(req, res, next) {
           })
 
 //console.dir(profileController)
+
+
     app.get('/profiles', isLoggedIn, profileController.getAllProfiles);
 
     app.get('/showProfile/:id', isLoggedIn, profileController.getOneProfile);
