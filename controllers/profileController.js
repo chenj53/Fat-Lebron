@@ -17,7 +17,7 @@ exports.update = ( req, res ) => {
         profile.apizip = req.body.apizip
 
 
-        axios.get("https://www.zipcodeapi.com/rest/"+apikey.apikey.apizip+"/info.json/"+profile.apizip+"/degrees")
+        axios.get("https://www.zipcodeapi.com/rest/"+apikey.apikey.apizip+"/multi-info.json/"+profile.apizip+"/degrees")
         .then(function (response) {
           // handle success
           console.log('got the response!!')
