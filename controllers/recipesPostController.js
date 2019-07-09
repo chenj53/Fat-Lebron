@@ -122,7 +122,7 @@ exports.saveRecipesComment = (req,res) => {
 
   newRecipesComment.save()
     .then( () => {
-      res.redirect( 'showPost/'+req.body.postId );
+      res.redirect( 'showPost/'+req.body.postId);
     } )
     .catch( error => {
       res.send( error );

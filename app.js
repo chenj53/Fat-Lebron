@@ -172,10 +172,6 @@ app.get('/about', function(req, res, next) {
   res.render('about');
 });
 
-app.get('/recipes', function(req, res, next) {
-  res.render('recipes');
-});
-
 
 
 app.post('/recipesDelete',recipesPostController.deleteRecipesPost)
