@@ -22,6 +22,9 @@ var usersSchema = Schema( {
   apicity: String,
   apistate: String,
   apizip: String,
+  dishName: String,
+  Ingredients: String,
+  dishDescription: String,
 
 } );
 

@@ -15,6 +15,7 @@ flash = require('connect-flash')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const profileController = require('./controllers/profileController')
+const recipesPostController = require('./controllers/recipesPostController')
 
 
 const mongoose = require( 'mongoose' );
@@ -170,6 +171,26 @@ app.use('/users', usersRouter);
 app.get('/about', function(req, res, next) {
   res.render('about');
 });
+
+app.get('/recipes', function(req, res, next) {
+  res.render('recipes');
+});
+
+
+
+app.post('/recipesDelete',recipesPostController.deleteRecipesPost)
+
+app.get('/recipes',recipesPostController.getAllRecipesPosts)
+
+app.post('/recipes',recipesPostController.saveRecipesPost)
+
+app.get('/showPost/:id',
+        recipesPostController.attachAllRecipesComments,
+        recipesPostController.showOneRecipe)
+
+app.post('/saveRecipesComment',recipesPostController.saveRecipesComment)
+
+
 
 app.use(function(req,res,next){
   console.log("about to look for post routes?!?")
