@@ -18,7 +18,7 @@ exports.saveRecipesPost = ( req, res ) => {
     post:req.body.post,
     createdAt: new Date(),
     dishDescription: req.body.dishDescription,
-    Ingredients: req.body.ingredients,
+    Ingredients: req.body.Ingredients,
    }
   )
 
@@ -111,7 +111,7 @@ exports.saveRecipesComment = (req,res) => {
     comment: req.body.comment,
     createdAt: new Date(),
     dishDescription: req.body.dishDescription,
-    Ingredients: req.body.ingredients,
+    Ingredients: req.body.Ingredients,
     dishName: req.body.dishName,
 
 
