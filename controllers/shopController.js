@@ -6,7 +6,7 @@ exports.saveShop = ( req, res ) => {
   //console.log("in saveSkill!")
   //console.dir(req)
   if (!res.locals.loggedIn) {
-    return res.send("You must be logged in to post a ride request.")
+    return res.send("You must be logged in to post your shopping info.")
   }
 
   let newShop = new Shop(
