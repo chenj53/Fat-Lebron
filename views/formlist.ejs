@@ -1,0 +1,23 @@
+<% for(i = 0; i<posts.length; i++){  %>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <div class="well">
+    <div class="media">
+
+
+
+      <div class="media-body">
+        <p> <a href="/showPost/<%= posts[i]._id %>"> </p>
+          <h4 class="media-heading"> <font size="6"> <%= posts[i].Zip %>   </a></font>  </h4>
+          <p class="text-left"> <strong> <%= posts[i].City %> </p>
+            <p class="text-left">  $ <%= posts[i].State  %>   </p>
+            <p class="text-left"> <%= posts[i].Address  %>
+            <p class="text-right"> By <%= posts[i].userName %> </p>
+
+
+
+          </div>
+        </div>
+      </div>
+      <% } %>

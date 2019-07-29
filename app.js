@@ -15,6 +15,7 @@ flash = require('connect-flash')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const profileController = require('./controllers/profileController')
+const shopController = require('./controllers/shopController')
 const recipesPostController = require('./controllers/recipesPostController')
 
 
@@ -76,8 +77,8 @@ app.use((req,res,next) => {
   else {
     res.locals.loggedIn = false
   }
-  console.log('req.user = ')
-  console.dir(req.user)
+  //console.log('req.user = ')
+  //console.dir(req.user)
   // here is where we can handle whitelisted logins ...
 
   next()
@@ -172,7 +173,9 @@ app.get('/about', function(req, res, next) {
   res.render('about');
 });
 
+app.get('/myform',shopController.getAllShop)
 
+app.post('/myform',shopController.saveShop)
 
 app.post('/recipesDelete',recipesPostController.deleteRecipesPost)
 
@@ -185,6 +188,22 @@ app.get('/showPost/:id',
         recipesPostController.showOneRecipe)
 
 app.post('/saveRecipesComment',recipesPostController.saveRecipesComment)
+
+
+
+
+app.post('/shopDelete',shopController.deleteShop)
+
+app.get('/shop',shopController.getAllShop)
+
+app.post('/shop',shopController.saveShop)
+
+app.get('/showShop/:id',
+        shopController.attachAllShopComment,
+        shopController.showOneShop)
+
+
+app.post('/saveShopComment',shopController.saveShopComment)
 
 
 
@@ -205,9 +224,6 @@ app.get('/showusers',    usersController.getAllusers);
 
 
 
-app.get('/myform', function(req, res, next) {
-  res.render('myform',{title:"Form Demo"});
-});
 
 app.get('/editprofile', function(req, res, next) {
   res.render('editprofile',{title:"Edit Profile"});
@@ -220,7 +236,7 @@ app.use(function(req,res,next){
 });
 
 app.get('/', function(req, res, next) {
-   res.render('index',{title:"YellowCartwheel"});
+   res.render('index',{title:"Cheap Shop"});
  });
 
 app.post('/processform', function(req, res, next) {

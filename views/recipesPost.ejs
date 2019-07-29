@@ -23,8 +23,8 @@
    <ol>
    <% console.log("in recipesPost.ejs with comments.length ="+comments.length) %>
    <% for(i = 0; i<comments.length; i++){  %>
-       <li> <a href="/showComment/<%= comments[i]._id %>">
-             <%= comments[i].userName %></a>
+       <li> <a href="/showComment/<%= comments[i]._id %>"></a>
+             <%= comments[i].userName %>
              <i>
             <%= comments[i].createdAt %></\/i> <br>
             <% if (comments[i].userId.equals(user._id)) { %>
