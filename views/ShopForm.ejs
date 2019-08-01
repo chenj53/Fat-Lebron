@@ -5,6 +5,29 @@
         <p>Help shoppers find the best deals</p>
     </div>
 
+    <form method="post" action="/saveShopComment">
+          <input type="hidden" name="postId" value="<%= postid %>">
+          <textarea name="comment"  cols="100%"></textarea><br>
+          <input class="btn btn-sm btn-primary" type="submit" value="Add Comment">
+        </form>
+        <br><br><br>
+
+
+        <h2>Comments: <%= comments.length %></h2>
+
+<ol>
+<% console.log("in Shop.ejs with comments.length ="+comments.length) %>
+<% for(i = 0; i<comments.length; i++){  %>
+   <li> <a href="/showComment/<%= comments[i]._id %>"></a>
+     <strong>    <%= comments[i].userName %> <%= comments[i].commentCreated %> </strong> <br>
+        <% if (comments[i].userId.equals(user._id)) { %>
+
+        <% } %>
+        <pre><%= comments[i].comment %></pre>
+    </li>
+<% } %>
+</ol>
+
 
 
 <%- include('bootfooter') -%>

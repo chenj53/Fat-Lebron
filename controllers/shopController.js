@@ -14,7 +14,7 @@ exports.saveShop = ( req, res ) => {
 
     userId: req.user._id,
     userName: req.user.googlename,
-    post: req.body.post, //title
+    post: req.body.postId, //title
     createdAt:  new Date(),
     City: req.body.City,
     State: req.body.State,
@@ -33,7 +33,7 @@ exports.saveShop = ( req, res ) => {
 
   newShop.save()
     .then( () => {
-      res.redirect( '/showProfile/'+req.user._id  );
+      res.redirect( 'myform' );
     } )
     .catch( error => {
       res.send( "Shop is "+error );
@@ -121,16 +121,16 @@ exports.saveShopComment = (req,res) => {
     postId: req.body.postId,
     userName:req.user.googlename,
     comment: req.body.comment,
-    createdAt: new Date(),
+    commentCreated: new Date(),
 
    }
   )
 
-  console.log("skill = "+newSkill)
+  console.log("req.body.comment = "+req.body.comment)
 
   newShopComment.save()
     .then( () => {
-      res.redirect( 'showShop/'+req.body.postId );
+      res.redirect( '/myform');
     } )
     .catch( error => {
       res.send( error );
@@ -147,12 +147,17 @@ exports.attachAllShopComment = ( req, res, next ) => {
   //gconsle.log('in getAllSkills')
   console.log("in aAFC with id= "+req.params.id)
   var ObjectId = require('mongoose').Types.ObjectId;
+
+  console.log(ObjectId)
+
   ShopComment.find({postId:ObjectId(req.params.id)}).sort({createdAt:-1})
+
     .exec()
     .then( ( comments ) => {
       console.log("comments.length=")
       console.dir(comments.length)
       res.locals.comments = comments
+      res.locals.postid=req.params.id
       next()
     } )
     .catch( ( error ) => {

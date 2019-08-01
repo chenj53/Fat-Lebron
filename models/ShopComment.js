@@ -10,6 +10,7 @@ var ShopCommentSchema = Schema( {
   createdAt: Date,
   comment: String,
   postId: String,
+  commentCreated: String,
 
 
 
